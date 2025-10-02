@@ -1,0 +1,288 @@
+@import 'tailwindcss';
+@import './peak.css';
+@import './typography.css';
+
+@theme {
+  --color-primary: var(--color-forest);
+
+  --color-neutral: var(--color-slate-800);
+  --color-neutral-50: var(--color-slate-50);
+  --color-neutral-100: var(--color-slate-100);
+  --color-neutral-200: var(--color-slate-200);
+  --color-neutral-300: var(--color-slate-300);
+  --color-neutral-400: var(--color-slate-400);
+  --color-neutral-500: var(--color-slate-500);
+  --color-neutral-600: var(--color-slate-600);
+  --color-neutral-700: var(--color-slate-700);
+  --color-neutral-800: var(--color-slate-800);
+  --color-neutral-900: var(--color-slate-900);
+  --color-neutral-950: var(--color-slate-950);
+
+  /* --font-sans: Gaultier, ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"; */
+  /* --font-serif: Lavigne, ui-serif, Georgia, Cambria, "Times New Roman", Times, serif; */
+  /* --font-mono: Anonymous, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; */
+
+  --font-weight-*: initial;
+  /* --font-weight-hairline: 100; */
+  /* --font-weight-thin: 200; */
+  /* --font-weight-light: 300; */
+  --font-weight-normal: 400;
+  /* --font-weight-medium: 500; */
+  /* --font-weight-semibold: 600; */
+  --font-weight-bold: 700;
+  /* --font-weight-extrabold: 800; */
+  /* --font-weight-black: 900; */
+
+  --color-teal-999: oklch(0.22 0.03 192.7);
+}
+
+@layer base {
+  html {
+    background-color: var(--color-cream);
+    color: var(--color-neutral);
+    /* Set sans, serif or mono stack with optional custom font as default. */
+    font-family: 'Roboto Slab', var(--font-sans);
+    /* font-family: var(--font-serif); */
+    /* font-family: 'Roboto Mono', var(--font-mono); */
+  }
+
+  html.dark-mode {
+    color: var(--color-cream);
+    background-color: var(--color-forest);
+  }
+
+  .dark-mode {
+    --color-primary: var(--color-forest);
+  }
+}
+
+body {
+  position: relative;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 25%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 150%;
+  height: 150%;
+  /* background: linear-gradient(
+    0deg,
+    rgba(255, 255, 255, 0) 25%,
+    var(--color-teal-400) 100%
+  ); */
+  background: radial-gradient(circle, #d5e374 0%, rgba(255, 255, 255, 0) 50%);
+  opacity: 10%;
+  z-index: -1;
+}
+
+.section {
+  --text-color: var(--color-cream);
+  --bg-color: color-mix(in oklab, var(--color-white) 5%, transparent);
+  --border-color: color-mix(in oklab, var(--color-white) 10%, transparent);
+
+  color: var(--text-color);
+  background-color: var(--bg-color);
+  border: 1px solid var(--border-color);
+}
+
+.section--shaded {
+  --text-color: var(--color-cream);
+  --bg-color: color-mix(in oklab, var(--color-cream) 15%, transparent);
+  --border-color: color-mix(in oklab, var(--color-white) 15%, transparent);
+}
+
+.main,
+.footer {
+  @apply relative;
+}
+
+.main::before,
+.main::after,
+.footer::before,
+.footer::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  z-index: -1;
+  width: 1px;
+  height: calc(
+    100% + 0.5rem
+  ); /* this accounts for the dashed line bit of the last section */
+  @apply border-r border-dashed border-white/20;
+}
+
+.footer::before,
+.footer::after {
+  height: 100%;
+}
+
+.main::before,
+.footer::before {
+  left: 0.5rem;
+}
+
+.main::after,
+.footer::after {
+  right: 0.5rem;
+}
+
+@media (width >= 50rem) {
+  .main::before,
+  .footer::before {
+    left: calc(calc(calc(100vw - 48rem) / 2) - 0.5rem);
+  }
+
+  .main::after,
+  .footer::after {
+    right: calc(calc(calc(100vw - 48rem) / 2) - 0.5rem);
+  }
+}
+
+.section,
+.navigation {
+  @apply relative;
+}
+
+.home .section > *,
+.home .navigation a {
+  @apply relative;
+  animation: fade-in-down;
+  animation-duration: 1s;
+  animation-delay: 1s;
+  animation-fill-mode: both;
+  --starting-from: -0.25rem;
+}
+
+.home .navigation a {
+  animation-delay: calc(var(--stagger, 0s) + 0.6s);
+}
+
+.section::before,
+.section::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: -1;
+  height: 1px;
+  width: 100vw;
+  @apply border-t border-dashed border-white/20;
+}
+
+.section::before {
+  top: calc(-0.5rem + 1px);
+}
+
+.section::after {
+  bottom: calc(-0.5rem - 1px);
+}
+
+.section + .section::before,
+.navigation + .section::before {
+  height: 0;
+  width: 0;
+}
+
+.navigation {
+  @apply relative;
+}
+
+.navigation::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: -1;
+  height: 1px;
+  width: 100vw;
+  @apply border-t border-dashed border-white/20;
+}
+
+.navigation::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: -1;
+  height: 1px;
+  width: 100vw;
+  @apply border-t border-dashed border-white/20;
+}
+
+.hero__image {
+  animation: fade-in-left;
+  animation-duration: 1s;
+}
+
+.hero__bio {
+  animation: fade-in-right;
+  animation-duration: 0.5s;
+}
+
+.hero__title {
+  animation: slide-up;
+  animation-delay: 0.5s;
+  animation-duration: 0.5s;
+  animation-fill-mode: both;
+}
+
+.hero__meta {
+  animation: fade-slide-down;
+  animation-delay: 0.5s;
+  animation-duration: 0.5s;
+  animation-fill-mode: both;
+}
+
+.hero__meta_item {
+  animation: fade-in-down;
+  animation-delay: calc(0.4s + var(--delay));
+  animation-duration: 0.5s;
+  animation-fill-mode: both;
+}
+
+@keyframes fade-in-right {
+  0% {
+    opacity: 0;
+    transform: translateX(-2rem);
+  }
+  100% {
+    opacity: 1;
+    tranform: translateX(0);
+  }
+}
+
+@keyframes fade-in-left {
+  0% {
+    opacity: 0;
+    transform: translateX(2rem);
+  }
+  100% {
+    opacity: 1;
+    tranform: translateX(0);
+  }
+}
+
+@keyframes slide-up {
+  0% {
+    transform: translateY(50%);
+  }
+  100% {
+    tranform: translateY(0);
+  }
+}
+
+@keyframes fade-in-down {
+  0% {
+    opacity: 0;
+    transform: translateY(var(--starting-from, -50%));
+  }
+  100% {
+    opacity: 1;
+    tranform: translateY(0);
+  }
+}

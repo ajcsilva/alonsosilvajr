@@ -1,0 +1,29 @@
+tabs:
+  main:
+    display: Main
+    sections:
+      -
+        display: Contact
+        fields:
+          -
+            handle: copy
+            field:
+              remove_empty_nodes: false
+              type: bard
+              display: Copy
+          -
+            handle: contacts
+            field:
+              mode: keyed
+              keys:
+                -
+                  key: Email
+                  value: Email
+                -
+                  key: Github
+                  value: Github
+                -
+                  key: LinkedIn
+                  value: LinkedIn
+              type: array
+              display: Contacts

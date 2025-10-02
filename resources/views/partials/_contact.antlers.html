@@ -1,0 +1,32 @@
+{{ partial:components/section label="{{ 'Contact' | trans }}" }}
+  {{ slot:sidebar }}
+    <ul class="mt-1 flex flex-wrap gap-3 md:flex-col md:gap-1">
+      {{ foreach :array="contact:contacts" }}
+        <li class="flex items-center gap-1 md:justify-end">
+          {{ svg src="{{ key | lower }}" class="size-3 fill-[var(--text-color)]/75" }}
+          {{ if key == 'Email' }}
+            <a
+              class="text-xs"
+              href="{{ value | obfuscate_email }}"
+              onclick="
+                  event.preventDefault(); 
+                  navigator
+                    .clipboard
+                    .writeText('{{ value | remove_left('mailto:') | obfuscate_email }}')
+                    .then(() => alert('My email address is copied to your clipboard!'))"
+            >
+              {{ key }}
+            </a>
+          {{ else }}
+            <a class="text-xs" href="{{ value }}">{{ key }}</a>
+          {{ /if }}
+        </li>
+      {{ /foreach }}
+    </ul>
+  {{ /slot:sidebar }}
+  <div
+    class="prose mx-auto text-[var(--text-color)]/75 md:max-w-md md:px-12 md:text-center"
+  >
+    {{ contact:copy }}
+  </div>
+{{ /partial:components/section }}

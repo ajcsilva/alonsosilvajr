@@ -1,0 +1,15 @@
+{{#
+  @name Logo
+  @desc The logo component with a `width` attribute.
+#}}
+
+<!-- /components/_logo.antlers.html -->
+<a aria-label="Logo {{ config:app:name }}" href="{{ site:url }}">
+  <img
+    src="/visuals/statamic-peak-logo.svg"
+    class="{{ class }} select-none"
+    width="{{ width }}"
+    alt="{{ config:app:name }}"
+  />
+</a>
+<!-- End: /components/_logo.antlers.html -->

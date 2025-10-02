@@ -1,0 +1,56 @@
+{{#
+  @name Table
+  @desc The table component for sizeable content tables.
+  @set page.article.table
+#}}
+
+<!-- /components/_table.antlers.html -->
+<div
+  class="not-prose {{ switch(
+    (size == 'md') => 'span-md',
+    (size == 'lg') => 'span-lg',
+    (size == 'xl') => 'span-xl',
+    () => 'span-md') }} overflow-auto"
+>
+  <table class="bg-light w-full min-w-[580px] border-collapse sm:min-w-none">
+    {{ table }}
+      {{ if first && first_row_headers }}
+        <thead>
+          <tr>
+            {{ cells }}
+              <th
+                class="border-neutral bg-neutral border-b px-3 py-3 text-left text-xs font-bold tracking-wider text-white uppercase xl:px-6"
+              >
+                {{ value }}
+              </th>
+            {{ /cells }}
+          </tr>
+        </thead>
+      {{ /if }}
+      {{ first ?= '<tbody>' }}
+      {{ if !first && first_row_headers || !first_row_headers }}
+        <tr>
+          {{ cells }}
+            {{ if first && first_column_headers }}
+              <th
+                class="border-neutral bg-neutral border-b px-3 py-3 text-left text-xs font-bold tracking-wider text-white uppercase xl:px-6"
+              >
+                {{ value }}
+              </th>
+            {{ else }}
+              <td
+                class="border-neutral text-neutral border-b px-3 py-3 align-top text-sm xl:px-6"
+              >
+                {{ value }}
+              </td>
+            {{ /if }}
+          {{ /cells }}
+        </tr>
+      {{ /if }}
+      {{ last ?= '</tbody>' }}
+    {{ /table }}
+  </table>
+
+  {{ partial:typography/caption }}
+</div>
+<!-- End: /components/_table.antlers.html -->

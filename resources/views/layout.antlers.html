@@ -1,0 +1,69 @@
+{{#
+  @name Layout
+  @desc The default layout file.
+#}}
+
+<!-- /layout.antlers.html -->
+<!DOCTYPE html>
+<html
+  lang="{{ site:short_locale }}"
+  class="dark-mode scroll-pt-4 scroll-smooth antialiased"
+>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    {{#
+      <link rel="preconnect" href="https://fonts.bunny.net" />
+      <link
+        href="https://fonts.bunny.net/css?family=inter:400,800,900&display=swap"
+        rel="stylesheet"
+      />
+    #}}
+    {{#
+      <link rel="preconnect" href="https://rsms.me/" />
+      <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
+      <style>
+        :root {
+          font-family: Inter, sans-serif;
+          font-feature-settings:
+            'cv02',
+            'cv03',
+            'cv04',
+            'cv11',
+            'liga' 1,
+            'calt' 1; /* fix for Chrome */
+        }
+        @supports (font-variation-settings: normal) {
+          :root {
+            font-family: InterVariable, sans-serif;
+          }
+        }
+      </style>
+    #}}
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+
+    {{ vite src="resources/css/site.css|resources/js/site.js" }}
+    {{ partial:statamic-peak-seo::snippets/seo }}
+    {{ partial:statamic-peak-browser-appearance::snippets/browser_appearance }}
+    {{ partial:statamic-peak-tools::snippets/live_preview }}
+  </head>
+  <body class="{{ slug }} flex min-h-screen flex-col">
+    {{ stack:seo_body }}
+    {{ partial:statamic-peak-tools::snippets/noscript }}
+    {{ partial:statamic-peak-tools::navigation/skip_to_content }}
+    {{ partial:statamic-peak-tools::components/toolbar }}
+    {{# {{ partial:layout/header }} #}}
+    {{ template_content }}
+    {{ partial:layout/footer }}
+  </body>
+</html>
+<!-- End: /layout.antlers.html -->

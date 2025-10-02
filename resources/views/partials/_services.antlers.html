@@ -1,0 +1,14 @@
+<section class="border-cream/10 bg-cream mx-auto grid max-w-3xl border p-10">
+  <h2 class="text-forest mb-4 text-sm font-bold tracking-tight uppercase">
+    {{ 'Services' | trans }}
+  </h2>
+  <div class="text-forest grid grid-cols-3 gap-6">
+    {{ services:services }}
+      <div class="stack-1 border-l border-[#e2bf00] pl-4 [&_p]:text-xs">
+        <h2 class="text-xl font-bold tracking-tight text-balance">
+          {{ header }}
+        </h2>
+        {{ copy }}
+      </div>
+    {{ /services:services }}
+</section>

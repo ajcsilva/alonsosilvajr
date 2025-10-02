@@ -1,0 +1,30 @@
+<main class="main stack-4 flex-1 px-4" id="content">
+  {{ partial:page_builder/hero }}
+  <nav
+    class="navigation stack-space-2 mx-auto -mb-2 max-w-[calc(var(--container-3xl)+1rem)]"
+  >
+    <ul
+      class="text-cream flex overflow-auto text-xs font-bold tracking-wide uppercase [&::-webkit-scrollbar]:h-0 [&::-webkit-scrollbar]:w-0 [&::-webkit-scrollbar]:bg-transparent"
+    >
+      {{ items = ['About', 'Experience', 'Service Area', 'Education', 'Contact'] }}
+      {{ foreach:items as="item" }}
+        <li
+          class="flex-1 border-r border-dashed border-white/20 text-center last:border-none"
+        >
+          <a
+            class="hover:bg-cream/15 block px-4 py-2 font-bold transition"
+            href="#{{ item | slugify }}"
+            style="--stagger: {{ count / 10 }}s"
+          >
+            {{ item }}
+          </a>
+        </li>
+      {{ /foreach:items }}
+    </ul>
+  </nav>
+  {{ partial:partials/about }}
+  {{ partial:partials/experience }}
+  {{ partial:partials/service_area }}
+  {{ partial:partials/education }}
+  {{ partial:partials/contact }}
+</main>

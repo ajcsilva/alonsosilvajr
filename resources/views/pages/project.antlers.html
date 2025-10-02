@@ -1,0 +1,45 @@
+<main class="main stack-4 flex-1 py-4" id="content">
+  {{ partial:partials/project-hero }}
+  {{ sections }}
+    <section
+      class="{{ ['section mx-auto max-w-3xl', 'grid md:grid-cols-2' => {['media_left', 'media_right'] | in_array(layout)}] | classes }}"
+    >
+      {{ unless layout == 'copy_only' }}
+        <div
+          class="{{ ['flex items-center justify-center bg-cream', 'md:order-2' => layout == 'media_right'] | classes }}"
+        >
+          {{ if media_type == 'video' }}
+            <video
+              src="{{ media:url }}"
+              class="aspect-square w-full object-contain p-4"
+              autoplay
+              loop
+            />
+          {{ /if }}
+          {{ if media_type == 'image' }}
+            <img
+              class="{{ ['w-full object-cover', 'aspect-square' => layout != 'media_top', 'aspect-2/1' => layout == 'media_top'] | classes }}"
+              src="{{ media:url }}"
+              alt=""
+            />
+          {{ /if }}
+        </div>
+      {{ /unless }}
+      <div
+        class="{{ ['stack-4 px-8 py-10', 'md:order-1' => layout == 'media_right'] | classes }}"
+      >
+        <h2
+          class="{{ ['font-bold tracking-wide uppercase', 'text-sm' => layout != 'copy_only'] | classes }}"
+        >
+          {{ title }}
+        </h2>
+        <div
+          class="{{ ['prose max-w-none text-[var(--text-color)]/75', 'text-sm' => {['media_right', 'media_left'] | in_array(layout)}] | classes }}"
+        >
+          {{ copy }}
+        </div>
+      </div>
+    </section>
+  {{ /sections }}
+  {{ partial:partials/contact }}
+</main>

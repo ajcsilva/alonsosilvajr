@@ -1,0 +1,12 @@
+name: AJ
+super: true
+id: 3d60211e-bedc-4ce1-9743-57fb4f3d1e72
+password_hash: $2y$12$3emIrvQK0d/HY3W/gX8U4OAAdlMvkqKqBEoEefSG3MXHwlIisTdsi
+preferences:
+  collections:
+    pages:
+      after_save: continue_editing
+    projects:
+      after_save: continue_editing
+  locale: en
+  favorites: {  }

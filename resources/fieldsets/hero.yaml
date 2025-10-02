@@ -1,0 +1,14 @@
+title: Hero
+fields:
+  -
+    handle: header
+    field:
+      type: text
+      display: Header
+  -
+    handle: subheader
+    field:
+      type: text
+      display: Subheader
+  -
+    import: image

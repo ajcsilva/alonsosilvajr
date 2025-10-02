@@ -1,0 +1,56 @@
+{{# @format false #}}
+<section class="hero pt-12 md:pt-24">
+  <div class="overflow-hidden mx-auto flex max-w-3xl flex-wrap gap-8">
+    <div class="hero__image w-full md:basis-[38%]">
+      {{ partial:statamic-peak-tools::components/picture 
+        :image="hero:image" 
+        class="border border-white/20 w-full max-w-md"
+        cover="false" 
+        lazy="true" 
+        sizes="
+          {{ switch(
+            (hero_size == 'md') => '(min-width: 1280px) 640px, (min-width: 768px) 50vw, 90vw',
+            (hero_size == 'lg') => '(min-width: 1280px) 960px, (min-width: 768px) 75vw, 90vw',
+            (hero_size == 'xl') => '(min-width: 1280px) 1150px, 90vw',
+            () => '100vw'
+          )}}"
+      }}
+    </div>
+    <div class="hero__bio w-full md:flex-1">
+      <div class="hero__title">
+        <h1 class="text-white text-5xl font-bold">{{ hero:header }}</h1>
+        <h2 class="text-cream/75 text-2xl italic">{{ hero:subheader }}</h2>
+      </div>
+      {{ if hero:meta }}
+        <dl class="hero__meta mt-4 text-xs">
+          {{ hero:meta }}
+            <div
+              class="hero__meta_item flex justify-between gap-4 border-b border-dashed border-white/25 py-1"
+              style="--delay: {{ count / 10 }}s"
+            >
+              <dt class="text-cream">{{ label }}</dt>
+              <dd class="text-cream/75 text-right">
+                {{ if label == 'Email' }}
+                  <a
+                    class="underline"
+                    href="mailto:{{ value | obfuscate_email }}"
+                    onclick="
+                      event.preventDefault(); 
+                      navigator
+                        .clipboard
+                        .writeText('{{ value | remove_left('mailto:') | obfuscate_email }}')
+                        .then(() => alert('My email address is copied to your clipboard!'))"
+                  >
+                    {{ value | obfuscate_email }}
+                  </a>
+                {{ else }}
+                  {{ value }}
+                {{ /if }}
+              </dd>
+            </div>
+          {{ /hero:meta }}
+        </dl>
+      {{ /if }}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,15 @@
+<section
+  class="{{ ['section mx-auto grid max-w-3xl gap-y-2 md:grid-cols-[6rem_1fr] gap-x-8 px-4 py-10', class] | classes }}"
+  id="{{ label | slugify }}"
+>
+  <div>
+    <div class="sticky top-4 mt-1">
+      <h2 class="text-sm font-bold tracking-wide uppercase md:text-right">
+        {{ label }}
+      </h2>
+      {{ slot:sidebar }}
+    </div>
+  </div>
+
+  {{ slot }}
+</section>

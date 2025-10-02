@@ -1,0 +1,49 @@
+{{ partial:components/section label="{{ 'Projects' | trans }}" }}
+  <div class="grid gap-6 pr-4 md:grid-cols-2">
+    {{ collection:projects }}
+      <article class="stack-2">
+        <div class="aspect-5/3 bg-[#DFE882]">
+          <img
+            class="h-full w-full object-cover"
+            src="{{ thumbnail:url }}"
+            alt="{{ thumbnail:alt ?? title }}"
+          />
+        </div>
+        <div class="flex items-baseline justify-between">
+          <h1 class="text-lg leading-tight font-bold">{{ title }}</h1>
+          {{ if website }}
+            <a
+              href="{{ website }}"
+              class="hover:text-cream/75 block flex items-center gap-0.5 border-b border-[var(--text-color)]/50 text-[10px] text-[var(--text-color)]/50"
+              target="_blank"
+            >
+              <span>{{ 'website' | trans }}</span>
+              <span>
+                {{ svg src="external" class="size-1.5 fill-[currentColor]" }}
+              </span>
+            </a>
+          {{ /if }}
+        </div>
+        <p class="text-xs text-[var(--text-color)]/75">
+          {{ description }}
+        </p>
+        <div class="flex flex-wrap gap-x-4 gap-y-2">
+          {{ tools }}
+            <div class="flex shrink-0 items-center gap-1">
+              {{ svg src="{{ name | lower }}" class="{{ ['shrink-0 fill-[var(--text-color)]/75', 'size-4' => !width] | classes }}" style="{{ width ?= 'width: {{ width }}' }}" }}
+              {{ unless icon_only }}
+                <span class="text-[12px]">{{ name }}</span>
+              {{ /unless }}
+            </div>
+          {{ /tools }}
+        </div>
+        <a
+          class="bg-cream/15 hover:bg-cream/25 border-cream/10 block border p-2 text-center text-xs transition"
+          href="{{ url }}"
+        >
+          {{ 'View Case Study' | trans }}
+        </a>
+      </article>
+    {{ /collection:projects }}
+  </div>
+{{ /partial:components/section }}

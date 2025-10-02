@@ -1,0 +1,159 @@
+title: Home
+tabs:
+  main:
+    display: Main
+    sections:
+      -
+        fields:
+          -
+            handle: title
+            field:
+              type: text
+              required: true
+              validate:
+                - required
+          -
+            handle: hero
+            field:
+              type: group
+              display: Hero
+              fields:
+                -
+                  handle: header
+                  field:
+                    type: text
+                    display: Header
+                -
+                  handle: subheader
+                  field:
+                    type: text
+                    display: Subheader
+                -
+                  import: image
+                -
+                  handle: meta
+                  field:
+                    type: grid
+                    display: Meta
+                    fields:
+                      -
+                        handle: label
+                        field:
+                          type: text
+                          display: Label
+                      -
+                        handle: value
+                        field:
+                          type: text
+                          display: Value
+          -
+            handle: about
+            field:
+              type: group
+              display: About
+              fields:
+                -
+                  handle: copy
+                  field:
+                    remove_empty_nodes: false
+                    type: bard
+                    display: Copy
+                    buttons:
+                      - bold
+                      - italic
+                    allow_source: false
+          -
+            handle: experience
+            field:
+              type: group
+              display: Experience
+              fields:
+                -
+                  handle: copy
+                  field:
+                    remove_empty_nodes: false
+                    type: bard
+                    display: Copy
+                    buttons:
+                      - bold
+                      - italic
+                    allow_source: false
+          -
+            handle: service_area
+            field:
+              type: group
+              display: 'Service Area'
+              fields:
+                -
+                  handle: copy
+                  field:
+                    remove_empty_nodes: false
+                    type: bard
+                    display: Copy
+                    buttons:
+                      - bold
+                      - italic
+                    allow_source: false
+          -
+            handle: education
+            field:
+              type: group
+              display: Education
+              fields:
+                -
+                  handle: records
+                  field:
+                    type: replicator
+                    display: Records
+                    sets:
+                      new_set_group:
+                        display: 'New Set Group'
+                        sets:
+                          record:
+                            display: Record
+                            fields:
+                              -
+                                handle: date
+                                field:
+                                  type: text
+                                  display: Date
+                              -
+                                handle: title
+                                field:
+                                  type: text
+                                  display: Title
+                              -
+                                handle: description
+                                field:
+                                  type: textarea
+                                  display: Description
+                              -
+                                handle: organization
+                                field:
+                                  type: text
+                                  display: Organization
+                              -
+                                handle: location
+                                field:
+                                  type: text
+                                  display: Location
+  sidebar:
+    display: Sidebar
+    sections:
+      -
+        fields:
+          -
+            handle: slug
+            field:
+              type: slug
+              localizable: true
+              validate: 'max:200'
+          -
+            handle: parent
+            field:
+              type: entries
+              collections:
+                - pages
+              max_items: 1
+              listable: false
+              localizable: true
