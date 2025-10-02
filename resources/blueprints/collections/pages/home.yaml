@@ -113,30 +113,10 @@ tabs:
                             display: Record
                             fields:
                               -
-                                handle: date
-                                field:
-                                  type: text
-                                  display: Date
-                              -
                                 handle: title
                                 field:
                                   type: text
                                   display: Title
-                              -
-                                handle: description
-                                field:
-                                  type: textarea
-                                  display: Description
-                              -
-                                handle: organization
-                                field:
-                                  type: text
-                                  display: Organization
-                              -
-                                handle: location
-                                field:
-                                  type: text
-                                  display: Location
   sidebar:
     display: Sidebar
     sections:
